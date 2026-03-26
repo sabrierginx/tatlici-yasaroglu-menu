@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a1810" />
+  <meta name="description" content="Tatlıcı Yaşaroğlu — QR menü" />
+  <title>Tatlıcı Yaşaroğlu — Menü</title>
+  <link rel="canonical" href="/" />
+  <!-- SITE_URL: Sitenin tam https adresi belli olunca aşağıdaki satırların yorumunu kaldırıp URL'yi yazın (WhatsApp önizlemesi vb.). -->
+  <!-- <meta property="og:url" content="https://ORNEK.netlify.app/" /> -->
+  <!-- <meta property="og:title" content="Tatlıcı Yaşaroğlu — Menü" /> -->
+  <!-- <meta property="og:description" content="Diyarbakır'ın eşsiz lezzetleri — QR menü" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --bg-deep: #e8dfd0;
+      --ink: #2a1810;
+      --ink-soft: #5c4336;
+      --accent: #8b2942;
+      --accent-soft: rgba(139, 41, 66, 0.12);
+      --gold: #9a7b4f;
+      --card: #fffcf7;
+      --shadow: 0 12px 40px rgba(42, 24, 16, 0.08);
+      --radius: 18px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-script: "Dancing Script", cursive;
+      --font-body: "Source Sans 3", system-ui, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--ink);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(154, 123, 79, 0.18), transparent 55%),
+        radial-gradient(ellipse 80% 50% at 100% 50%, rgba(139, 41, 66, 0.06), transparent 45%),
+        radial-gradient(ellipse 60% 40% at 0% 80%, rgba(42, 24, 16, 0.04), transparent 50%);
+    }
+
+    .wrap {
+      position: relative;
+      max-width: 32rem;
+      width: 100%;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding: clamp(1.25rem, 4vw, 2rem) clamp(1rem, 4vw, 1.5rem) 3rem;
+      overflow: hidden;
+    }
+
+    .menu-bg-photo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: max(124%, 28rem);
+      height: max(118%, 42rem);
+      object-fit: cover;
+      object-position: center 35%;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.42;
+    }
+
+    .wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(244, 239, 230, 0.82) 0%,
+        rgba(244, 239, 230, 0.5) 45%,
+        rgba(244, 239, 230, 0.8) 100%
+      );
+    }
+
+    .wrap > *:not(.menu-bg-photo) {
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      padding: 0.5rem 0 1.75rem;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      width: 3rem;
+      height: 2px;
+      margin: 1.25rem auto 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.85;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.65rem;
+    }
+
+    h1 {
+      font-family: var(--font-script);
+      font-weight: 700;
+      font-size: clamp(2.65rem, 9.5vw, 3.65rem);
+      line-height: 1.2;
+      margin: 0;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .tagline {
+      margin: 1rem 0 0;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      max-width: 24ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section {
+      margin-top: 1.85rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid rgba(42, 24, 16, 0.12);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before,
+    h2::after {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--gold));
+      flex-shrink: 0;
+    }
+
+    ul.menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .item {
+      background: rgba(255, 252, 247, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(42, 24, 16, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .item:active {
+      transform: scale(0.99);
+    }
+
+    .item-name {
+      font-weight: 500;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+
+    .item-note {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-top: 0.2rem;
+      font-style: italic;
+    }
+
+    .item-price {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .dondurma-fiyatlar {
+      margin: -0.25rem 0 1rem;
+      padding: 0.65rem 0.85rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      background: rgba(255, 252, 247, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: var(--radius);
+      border: 1px solid rgba(42, 24, 16, 0.06);
+    }
+
+    .dondurma-fiyatlar strong {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .dondurma-fiyatlar .sep {
+      margin: 0 0.5rem;
+      opacity: 0.45;
+    }
+
+    .item--flavor {
+      justify-content: flex-start;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      border-top: 1px solid rgba(42, 24, 16, 0.1);
+    }
+
+    footer strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .item {
+        transition: none;
+      }
+      .item,
+      .dondurma-fiyatlar {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img
+      class="menu-bg-photo"
+      src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"
+      alt=""
+      width="1400"
+      height="933"
+      decoding="async"
+      fetchpriority="low"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1590080663200-4474dbdc5a4d?auto=format&amp;fit=crop&amp;w=1400&amp;q=85';"
+    />
+    <header>
+      <p class="badge">QR Menü</p>
+      <h1>TATLICI YAŞAROĞLU</h1>
+      <p class="tagline">Diyarbakır'ın eşsiz lezzetleri</p>
+    </header>
+
+    <section aria-labelledby="sec-baklava">
+      <h2 id="sec-baklava">BAKLAVA &amp; KADAYIF</h2>
+      <ul class="menu">
+        <li class="item">
+          <div><span class="item-name">Fıstıklı baklava</span></div>
+          <span class="item-price">₺1.400</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Cevizli baklava</span></div>
+          <span class="item-price">₺1.100</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Soğuk baklava</span></div>
+          <span class="item-price">₺1.000</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Havuç dilimi</span></div>
+          <span class="item-price">₺1.800</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Fıstık sarma</span></div>
+          <span class="item-price">₺2.200</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Midye baklava</span></div>
+          <span class="item-price">₺1.850</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Şöbiyet</span></div>
+          <span class="item-price">₺1.850</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Burma kadayıf</span></div>
+          <span class="item-price">₺1.600</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Cevizli burma kadayıf</span></div>
+          <span class="item-price">₺1.100</span>
+        </li>
+        <li class="item">
+          <div><span class="item-name">Cevizli soğuk baklava</span></div>
+          <span class="item-price">₺1.000</span>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="sec-dondurma">
+      <h2 id="sec-dondurma">Dondurma</h2>
+      <p class="dondurma-fiyatlar">
+        Top <strong>₺50</strong><span class="sep">·</span>Porsiyon <strong>₺200</strong>
+      </p>
+      <ul class="menu">
+        <li class="item item--flavor"><div><span class="item-name">Vanilya</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Bitter çikolata</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Frambuaz</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Badem</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Antep fıstık</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Muz</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Çilek</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Limon</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Vişne</span></div></li>
+        <li class="item item--flavor"><div><span class="item-name">Karamel</span></div></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="sec-icecek">
+      <h2 id="sec-icecek">İçecekler</h2>
+      <ul class="menu">
+        <li class="item">
+          <div>
+            <span class="item-name">Türk kahvesi</span>
+          </div>
+          <span class="item-price">₺80</span>
+        </li>
+        <li class="item">
+          <div>
+            <span class="item-name">Çay</span>
+          </div>
+          <span class="item-price">₺40</span>
+        </li>
+        <li class="item">
+          <div>
+            <span class="item-name">Limonata</span>
+            <span class="item-note">ev yapımı</span>
+          </div>
+          <span class="item-price">₺110</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Hoş geldiniz — <strong>Afiyet Olsun</strong></p>
+    </footer>
+  </div>
+</body>
+</html>
