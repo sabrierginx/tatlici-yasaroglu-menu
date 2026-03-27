@@ -8,6 +8,9 @@ Menü (index.html) veriyi şu sırayla okur:
 
 Yönetim: /admin.html — güçlü şifre kullanın, adresi müşterilere vermeyin.
 
+QR kod: canlı sitede /qr.html açarak güncel menü adresine kodlanmış görsel alın.
+index.html başındaki canonical / og:url de canlı alan adınızla uyumlu olsun.
+
 
 --- A) Netlify (site + ortam değişkenleri) ---
 1. Siteyi Netlify’a bağlayın (Git veya manuel deploy).

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Menü QR kodu</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: #f4efe6;
+      color: #2a1810;
+    }
+    h1 { font-size: 1.1rem; margin: 0 0 0.5rem; text-align: center; }
+    p { margin: 0 0 1rem; font-size: 0.9rem; text-align: center; max-width: 22rem; }
+    code {
+      display: block;
+      word-break: break-all;
+      font-size: 0.8rem;
+      background: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(42, 24, 16, 0.12);
+      margin-bottom: 1rem;
+    }
+    img { width: min(280px, 85vw); height: auto; image-rendering: pixelated; }
+  </style>
+</head>
+<body>
+  <h1>Menü QR kodu</h1>
+  <p>Bu sayfa açıldığı sitenin adresini kodlar. Yazdırırken veya kaydederken bu sayfayı <strong>canlı sitenizde</strong> (Netlify) açın.</p>
+  <code id="url-out"></code>
+  <img id="qr" alt="Menü QR" width="280" height="280" />
+  <script>
+    (function () {
+      var base = window.location.origin + "/";
+      document.getElementById("url-out").textContent = base;
+      var api =
+        "https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=" +
+        encodeURIComponent(base);
+      document.getElementById("qr").src = api;
+    })();
+  </script>
+</body>
+</html>

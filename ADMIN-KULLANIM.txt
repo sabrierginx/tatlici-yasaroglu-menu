@@ -9,6 +9,15 @@ yedek olarak ikinci dosyadan da okunur. data/menu.json’u elle güncellerseniz
 aynı içeriği js/menu-fallback.json’a da kopyalayın (veya tersi).
 
 
+0) QR kod (basılı / vitrin)
+----------------------------
+• Eski bir Netlify önizleme adresine kodlanmış QR, güncel menüyü açmaz.
+• Çözüm: Canlı sitenizde tarayıcıdan /qr.html açın; ekrandaki QR’ı kaydedin veya
+  yazdırın. Bu sayfa her zaman o anki site adresinizi (origin) kodlar.
+• index.html içindeki canonical ve og:url satırları da canlı adresinizle aynı
+  olmalı (paylaşım önizlemesi için).
+
+
 1) Panele nasıl girilir?
 ------------------------
 • Sitenizin adresinin sonuna /admin.html ekleyin.
