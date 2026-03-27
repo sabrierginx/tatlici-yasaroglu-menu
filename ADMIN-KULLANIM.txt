@@ -1,0 +1,108 @@
+TATLICI YAŞAROĞLU — Yönetim paneli kullanım kılavuzu
+====================================================
+
+Bu dosya, menüyü güncellemek için admin panelinin nasıl kullanılacağını anlatır.
+Teknik kurulum (Supabase, Netlify) için ADMIN-KURULUM.txt dosyasına bakın.
+
+
+1) Panele nasıl girilir?
+------------------------
+• Sitenizin adresinin sonuna /admin.html ekleyin.
+
+  Örnek: https://sizin-site.netlify.app/admin.html
+
+• Tarayıcıda (telefon veya bilgisayar) bu adresi açın.
+
+• İki yöntemden biriyle devam edersiniz:
+
+  A) Supabase kullanıyorsanız:
+     — E-posta ve şifrenizi girin → "Giriş yap".
+     — Şifreyi unutursanız Supabase panelinden (Authentication → Users)
+       kullanıcıyı sıfırlayabilir veya yeni kullanıcı ekleyebilirsiniz.
+
+  B) Supabase kullanmıyorsanız:
+     — "Supabase olmadan yerel JSON düzenle" düğmesine tıklayın.
+     — Giriş gerekmez; değişiklikleri kaydetmek için dosya indirmeniz gerekir (aşağıda).
+
+
+2) Dükkan bilgisi (üst kısım)
+------------------------------
+• Üst rozet: Örn. "QR Menü" (menü sayfasının en üstündeki küçük yazı).
+• Dükkan adı: Büyük el yazısı başlık.
+• Slogan: Alt satırdaki kısa açıklama.
+• Alt yazı: Sayfa en altındaki metin; iki parça:
+  — "Alt yazı (kalın öncesi)" → örn. Hoş geldiniz —
+  — "Alt yazı (vurgulu)" → örn. Afiyet Olsun (kalın görünür).
+
+
+3) Menü bölümleri
+-----------------
+• "+ Yeni bölüm" ile yeni kategori ekleyebilirsiniz (ör. tatlı grubu).
+
+• Her bölümde:
+  — Bölüm başlığı: Müşterinin gördüğü başlık (ör. BAKLAVA & KADAYIF).
+  — Tür:
+      · "Fiyatlı liste": Her satırda ürün adı + fiyat (+ isteğe bağlı not).
+        Baklava, içecek gibi bölümler için uygundur.
+      · "Dondurma": Top ve porsiyon fiyatı bir kez yazılır; altında sadece
+        çeşit isimleri listelenir (Vanilya, Çilek vb.).
+
+• "Bölümü sil": O kategoriyi ve içindeki tüm ürünleri kaldırır.
+  Dikkat: Geri almak için önceki kaydı/JSON’u kullanmanız gerekir.
+
+• Türü değiştirirseniz (fiyatlı ↔ dondurma), o bölümdeki satırlar sıfırlanır;
+  önemli veriyi kaybetmemek için önce kaydedin veya kopyalayın.
+
+
+4) Ürün / çeşit satırları
+-------------------------
+• "+ Ürün / çeşit ekle" ile satır eklenir.
+
+• Fiyatlı listede her satırda:
+  — Ürün adı (zorunlu)
+  — Fiyat (örn. ₺1.400 veya 80 TL — yazdığınız gibi görünür)
+  — Not (isteğe bağlı; örn. ev yapımı)
+
+• Dondurmada her satırda yalnızca çeşit adı (ve isteğe bağlı görsel).
+
+• "Sil": Sadece o satırı kaldırır.
+
+
+5) Ürün fotoğrafı
+-----------------
+İki seçenek:
+
+  a) Görsel URL: "Görsel URL" kutusuna tam adres yazın
+     (https:// ile başlamalı). İnternette herkese açık bir bağlantı olmalı.
+
+  b) Dosya yükleme: Yalnızca Supabase kurulu ve giriş yapmışken çalışır.
+     "Dosya seç" ile resim yüklenir; adres otomatik dolar.
+     Supabase yoksa yalnızca (a) seçeneğini kullanın.
+
+
+6) Kaydetme
+-----------
+• Supabase ile giriş yaptıysanız:
+  — Alttaki "Buluta kaydet (Supabase)" ile değişiklikler canlı menüye yazılır.
+  — Ana sayfayı yenilediğinizde birkaç saniye içinde güncel menü görünür.
+
+• Yerel JSON modundaysanız:
+  — "menu.json indir" ile bilgisayarınıza dosya iner.
+  — Bu dosyayı projenizdeki data/menu.json ile değiştirip
+    siteyi Netlify’a (veya kullandığınız yere) tekrar yüklemeniz gerekir.
+    Aksi halde internetteki menü güncellenmez.
+
+
+7) Kontrol
+----------
+• "Menüyü görüntüle" linki ana menü sayfasını açar; kayıttan sonra buradan
+  kontrol edin.
+
+• "Veriyi yenile": Panelde sunucudaki / dosyadaki son hali tekrar yükler
+  (üzerinde çalıştığınız düzenlemeleri silmeden önce dikkat).
+
+
+8) Kısa güvenlik uyarısı
+-------------------------
+• /admin.html adresini müşterilere vermeyin; yalnızca işletme yetkilileri kullanmalı.
+• Giriş şifresini güçlü tutun; paylaşmayın.

@@ -1,0 +1,70 @@
+Supabase — Proje URL’si nerede?
+================================
+
+Adres her zaman şu kalıpta olur:
+
+   https://BURASI.supabase.co
+
+“BURASI” kısmı = proje referansı (küçük harf, rakam ve tire).
+
+
+Yöntem 1 — Tarayıcı adres çubuğu
+--------------------------------
+1. https://supabase.com/dashboard adresine gidin, projenizi açın.
+2. Adres çubuğunda şuna benzer bir URL görürsünüz:
+
+   https://supabase.com/dashboard/project/abcdefghijklmnop/...
+
+3. “project/” ile bir sonraki “/” arasındaki metin = referans.
+   Örnek: abcdefghijklmnop
+
+4. Proje URL’niz:
+
+   https://abcdefghijklmnop.supabase.co
+
+
+Yöntem 2 — Project Settings
+---------------------------
+1. Sol altta dişli: Project Settings.
+2. General (Genel) sekmesi.
+3. “Reference ID” veya benzeri alan — aynı kısa kod.
+
+
+Yöntem 3 — Connect penceresi
+----------------------------
+1. Projede üstte “Connect” düğmesi varsa tıklayın.
+2. Bağlantı örneklerinde tam Project URL yazar.
+
+
+Netlify’a ne yazacaksınız?
+--------------------------
+Environment variable: SUPABASE_URL
+Değer örneği: https://abcdefghijklmnop.supabase.co
+
+(Sonunda fazladan / olmasın.)
+
+En doğru kaynak: Project Settings → API → “Project URL” alanından kopyalayın
+(başında https:// olmalı).
+
+
+“Geçersiz URL” veya tarayıcıda boş / 404
+----------------------------------------
+• https://PROJE_REF.supabase.co adresini tarayıcıda açmak çoğu zaman 404
+  gösterir; bu normaldir, proje “bozuk” değildir.
+• Netlify’da SUPABASE_URL’e mutlaka tam adresi yazın:
+  https://PROJE_REF.supabase.co  (sadece PROJE_REF.supabase.co değil,
+  protokolsüz değer bazı araçlarda “geçersiz URL” sayılabilir.)
+• Proje referansında yazım hatası olmasın; Dashboard → Settings → General
+  veya Settings → API ile karşılaştırın.
+
+
+Anahtarlar hakkında
+-------------------
+• Netlify ve tarayıcıda (menü + admin) yalnızca “Publishable” veya
+  eski sekmedeki “anon” (JWT, eyJ ile başlar) kullanılır.
+
+• “Secret” / service_role anahtarını asla siteye, Netlify ortam
+  değişkenine (tarayıcıya gidecek yere) koymayın; sadece sunucu içindir.
+
+• Secret anahtarını bir yerde paylaştıysanız: Supabase → Settings →
+  API Keys → ilgili secret’ı silin / yenileyin (rotate).

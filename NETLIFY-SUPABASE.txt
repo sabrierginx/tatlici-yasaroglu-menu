@@ -1,0 +1,53 @@
+Supabase + Netlify — Bilgisayarda dosyaya yapıştırmadan bağlama
+===============================================================
+
+Artık URL ve anon key’i projedeki bir .js dosyasına yazmanız gerekmez.
+Netlify panelinden iki “ortam değişkeni” tanımlanır; her yayında otomatik
+olarak js/config.generated.js oluşturulur.
+
+
+A) Netlify’da build ayarı (bir kez)
+-----------------------------------
+1. https://app.netlify.com → sitenizi seçin.
+2. Site configuration → Build & deploy → Continuous deployment
+   (veya “Build settings”).
+3. Ayarlar şöyle olsun:
+   • Build command:  npm run build
+   • Publish directory:  .
+4. Kaydedin.
+
+Not: Siteyi yalnızca “sürükle-bırak” ile oluşturduysanız ve Git yoksa,
+   yine de bu build command’i Netlify arayüzünden girmeniz gerekir;
+   sonraki her deploy’da build çalışır.
+
+
+B) Ortam değişkenleri (Supabase’ten kopyala-yapıştır — sadece Netlify’da)
+-------------------------------------------------------------------------
+1. Supabase → Project Settings → API.
+2. Netlify → Site configuration → Environment variables → Add a variable.
+
+   İsim: SUPABASE_URL
+   Değer: Project URL (örn. https://abcdefgh.supabase.co)
+   Scopes: Builds, Deploys (ikisi de işaretli olsun)
+
+   İsim: SUPABASE_ANON_KEY
+   Değer: anon public anahtar (eyJ ile başlar; service_role DEĞİL)
+   Scopes: Builds, Deploys
+
+3. Deploy triggers → “Clear cache and deploy site” (veya yeni bir deploy).
+
+
+C) Sonuç
+--------
+• Yayınlanan sitede js/config.generated.js, bu değişkenlerle üretilir.
+• Bilgisayardaki Kadir Alyu klasöründe config.secrets.js doldurmanız
+  zorunlu değildir (eski yöntem; isteğe bağlı).
+
+
+D) Sorun giderme
+----------------
+• “Supabase bağlı değil” uyarısı: değişken adları tam olarak
+  SUPABASE_URL ve SUPABASE_ANON_KEY olmalı; boşluk yok.
+• Build log’da “npm run build” ve “config.generated.js yazıldı” görün.
+• SQL şeması ve Auth kullanıcısı için admin-giris-bilgileri.txt ve
+  supabase-schema.sql dosyalarına bakın.

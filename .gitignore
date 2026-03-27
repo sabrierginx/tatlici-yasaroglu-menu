@@ -2,3 +2,10 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 *.log
+node_modules/
+.env
+.env.*
+
+# Yönetici e-posta/şifre ve Supabase anahtarları — repoya girmesin
+admin-giris-bilgileri.txt
+js/config.secrets.js

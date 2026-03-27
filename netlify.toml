@@ -1,5 +1,6 @@
-# Statik site — kök dizinde index.html
+# Ortam değişkenleri (Netlify panel): SUPABASE_URL, SUPABASE_ANON_KEY
 [build]
+  command = "npm run build"
   publish = "."
 
 [[headers]]

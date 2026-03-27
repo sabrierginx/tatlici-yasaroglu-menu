@@ -6,11 +6,10 @@
   <meta name="theme-color" content="#2a1810" />
   <meta name="description" content="Tatlıcı Yaşaroğlu — QR menü" />
   <title>Tatlıcı Yaşaroğlu — Menü</title>
-  <link rel="canonical" href="/" />
-  <!-- SITE_URL: Sitenin tam https adresi belli olunca aşağıdaki satırların yorumunu kaldırıp URL'yi yazın (WhatsApp önizlemesi vb.). -->
-  <!-- <meta property="og:url" content="https://ORNEK.netlify.app/" /> -->
-  <!-- <meta property="og:title" content="Tatlıcı Yaşaroğlu — Menü" /> -->
-  <!-- <meta property="og:description" content="Diyarbakır'ın eşsiz lezzetleri — QR menü" /> -->
+  <link rel="canonical" href="https://69c58567927b603973716f21--peppy-sawine-0aba25.netlify.app/" />
+  <meta property="og:url" content="https://69c58567927b603973716f21--peppy-sawine-0aba25.netlify.app/" />
+  <meta property="og:title" content="Tatlıcı Yaşaroğlu — Menü" />
+  <meta property="og:description" content="Diyarbakır'ın eşsiz lezzetleri — QR menü" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -191,9 +190,24 @@
       border: 1px solid rgba(42, 24, 16, 0.06);
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.75rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .item-body {
+      flex: 1;
+      min-width: 0;
+      align-self: baseline;
+    }
+
+    .item-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid rgba(42, 24, 16, 0.08);
     }
 
     .item:active {
@@ -293,104 +307,22 @@
       onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1590080663200-4474dbdc5a4d?auto=format&amp;fit=crop&amp;w=1400&amp;q=85';"
     />
     <header>
-      <p class="badge">QR Menü</p>
-      <h1>TATLICI YAŞAROĞLU</h1>
-      <p class="tagline">Diyarbakır'ın eşsiz lezzetleri</p>
+      <p class="badge" id="shop-badge">QR Menü</p>
+      <h1 id="shop-name">TATLICI YAŞAROĞLU</h1>
+      <p class="tagline" id="shop-tagline">Diyarbakır'ın eşsiz lezzetleri</p>
     </header>
 
-    <section aria-labelledby="sec-baklava">
-      <h2 id="sec-baklava">BAKLAVA &amp; KADAYIF</h2>
-      <ul class="menu">
-        <li class="item">
-          <div><span class="item-name">Fıstıklı baklava</span></div>
-          <span class="item-price">₺1.400</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Cevizli baklava</span></div>
-          <span class="item-price">₺1.100</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Soğuk baklava</span></div>
-          <span class="item-price">₺1.000</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Havuç dilimi</span></div>
-          <span class="item-price">₺1.800</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Fıstık sarma</span></div>
-          <span class="item-price">₺2.200</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Midye baklava</span></div>
-          <span class="item-price">₺1.850</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Şöbiyet</span></div>
-          <span class="item-price">₺1.850</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Burma kadayıf</span></div>
-          <span class="item-price">₺1.600</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Cevizli burma kadayıf</span></div>
-          <span class="item-price">₺1.100</span>
-        </li>
-        <li class="item">
-          <div><span class="item-name">Cevizli soğuk baklava</span></div>
-          <span class="item-price">₺1.000</span>
-        </li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="sec-dondurma">
-      <h2 id="sec-dondurma">Dondurma</h2>
-      <p class="dondurma-fiyatlar">
-        Top <strong>₺50</strong><span class="sep">·</span>Porsiyon <strong>₺200</strong>
-      </p>
-      <ul class="menu">
-        <li class="item item--flavor"><div><span class="item-name">Vanilya</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Bitter çikolata</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Frambuaz</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Badem</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Antep fıstık</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Muz</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Çilek</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Limon</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Vişne</span></div></li>
-        <li class="item item--flavor"><div><span class="item-name">Karamel</span></div></li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="sec-icecek">
-      <h2 id="sec-icecek">İçecekler</h2>
-      <ul class="menu">
-        <li class="item">
-          <div>
-            <span class="item-name">Türk kahvesi</span>
-          </div>
-          <span class="item-price">₺80</span>
-        </li>
-        <li class="item">
-          <div>
-            <span class="item-name">Çay</span>
-          </div>
-          <span class="item-price">₺40</span>
-        </li>
-        <li class="item">
-          <div>
-            <span class="item-name">Limonata</span>
-            <span class="item-note">ev yapımı</span>
-          </div>
-          <span class="item-price">₺110</span>
-        </li>
-      </ul>
-    </section>
+    <div id="menu-sections"></div>
 
     <footer>
-      <p>Hoş geldiniz — <strong>Afiyet Olsun</strong></p>
+      <p>
+        <span id="footer-lead">Hoş geldiniz —</span>
+        <strong id="footer-strong">Afiyet Olsun</strong>
+      </p>
     </footer>
   </div>
+  <script src="js/config.js"></script>
+  <script src="js/config.generated.js"></script>
+  <script src="js/menu-public.js"></script>
 </body>
 </html>

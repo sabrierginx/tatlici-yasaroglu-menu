@@ -1,7 +1,9 @@
 TATLICI YAŞAROĞLU — Menüyü internet adresiyle yayınlama
 =======================================================
 
-Bu klasör tek sayfalık bir sitedir (index.html). Aşağıdaki yöntemlerden biriyle ücretsiz https:// adresi alırsınız.
+Bu klasör tek sayfalık bir sitedir (index.html). Menü verisi data/menu.json ve isteğe bağlı Supabase ile yönetilir; yönetim için admin.html ve ADMIN-KURULUM.txt dosyasına bakın.
+
+Aşağıdaki yöntemlerden biriyle ücretsiz https:// adresi alırsınız.
 
 --- Seçenek A: Netlify Drop (en hızlı, hesap gerekir) ---
 1. https://app.netlify.com/drop adresine gidin.

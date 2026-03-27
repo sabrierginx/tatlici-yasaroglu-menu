@@ -1,0 +1,57 @@
+{
+  "shop": {
+    "badge": "QR Menü",
+    "name": "TATLICI YAŞAROĞLU",
+    "tagline": "Diyarbakır'ın eşsiz lezzetleri",
+    "footerLead": "Hoş geldiniz —",
+    "footerStrong": "Afiyet Olsun"
+  },
+  "sections": [
+    {
+      "id": "baklava",
+      "title": "BAKLAVA & KADAYIF",
+      "kind": "priced",
+      "items": [
+        { "name": "Fıstıklı baklava", "price": "₺1.400", "note": "", "image": "" },
+        { "name": "Cevizli baklava", "price": "₺1.100", "note": "", "image": "" },
+        { "name": "Soğuk baklava", "price": "₺1.000", "note": "", "image": "" },
+        { "name": "Havuç dilimi", "price": "₺1.800", "note": "", "image": "" },
+        { "name": "Fıstık sarma", "price": "₺2.200", "note": "", "image": "" },
+        { "name": "Midye baklava", "price": "₺1.850", "note": "", "image": "" },
+        { "name": "Şöbiyet", "price": "₺1.850", "note": "", "image": "" },
+        { "name": "Burma kadayıf", "price": "₺1.600", "note": "", "image": "" },
+        { "name": "Cevizli burma kadayıf", "price": "₺1.100", "note": "", "image": "" },
+        { "name": "Cevizli soğuk baklava", "price": "₺1.000", "note": "", "image": "" }
+      ]
+    },
+    {
+      "id": "dondurma",
+      "title": "Dondurma",
+      "kind": "dondurma",
+      "topPrice": "₺50",
+      "portionPrice": "₺200",
+      "items": [
+        { "name": "Vanilya", "image": "" },
+        { "name": "Bitter çikolata", "image": "" },
+        { "name": "Frambuaz", "image": "" },
+        { "name": "Badem", "image": "" },
+        { "name": "Antep fıstık", "image": "" },
+        { "name": "Muz", "image": "" },
+        { "name": "Çilek", "image": "" },
+        { "name": "Limon", "image": "" },
+        { "name": "Vişne", "image": "" },
+        { "name": "Karamel", "image": "" }
+      ]
+    },
+    {
+      "id": "icecek",
+      "title": "İçecekler",
+      "kind": "priced",
+      "items": [
+        { "name": "Türk kahvesi", "price": "₺80", "note": "", "image": "" },
+        { "name": "Çay", "price": "₺40", "note": "", "image": "" },
+        { "name": "Limonata", "price": "₺110", "note": "ev yapımı", "image": "" }
+      ]
+    }
+  ]
+}

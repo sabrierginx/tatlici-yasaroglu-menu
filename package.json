@@ -1,0 +1,7 @@
+{
+  "name": "tatlici-yasaroglu-menu",
+  "private": true,
+  "scripts": {
+    "build": "node build-inject.js"
+  }
+}
