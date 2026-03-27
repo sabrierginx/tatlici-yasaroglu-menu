@@ -1,6 +1,6 @@
 /**
  * Netlify build: ortam değişkenlerinden js/config.generated.js üretir.
- * Netlify → Site configuration → Environment variables:
+ * Netlify ortam değişkenleri (ADMIN-KURULUM.txt):
  *   SUPABASE_URL, SUPABASE_ANON_KEY
  */
 const fs = require("fs");

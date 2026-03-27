@@ -553,7 +553,7 @@
       ev.preventDefault();
       if (!hasCloud) {
         alert(
-          "Supabase bağlı değil.\n\nNetlify → Environment variables:\nSUPABASE_URL ve SUPABASE_ANON_KEY ekleyip yeniden yayınlayın."
+          "Supabase bağlı değil.\n\nNetlify → Environment variables:\nSUPABASE_URL ve SUPABASE_ANON_KEY ekleyip yeniden yayınlayın.\n\nDetay: ADMIN-KURULUM.txt"
         );
         return;
       }

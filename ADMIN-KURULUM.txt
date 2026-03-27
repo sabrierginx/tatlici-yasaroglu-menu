@@ -1,43 +1,50 @@
 TATLICI YAŞAROĞLU — Yönetim paneli kurulumu
 ============================================
 
-Menü sayfası (index.html) veriyi şu sırayla okur:
-1) js/config.js içinde Supabase URL + anon key doluysa → Supabase’deki menu_data tablosu
-2) Değilse → data/menu.json (statik dosya)
+Menü (index.html) veriyi şu sırayla okur:
+1) Netlify ortam değişkenleriyle üretilen js/config.generated.js (Supabase URL + anon key)
+2) Supabase’deki menu_data tablosu
+3) Yoksa data/menu.json ve js/menu-fallback.json
 
-Yönetim adresi: /admin.html (Netlify’da herkese açık olur; güçlü şifre kullanın, linki müşterilere vermeyin.)
-
-
---- A) Sadece dosya ile (Supabase yok) ---
-1. admin.html açın → "Supabase olmadan yerel JSON düzenle".
-2. Değişiklikten sonra "menu.json indir" ile dosyayı indirin.
-3. Projede data/menu.json dosyasının içeriğini bununla değiştirin.
-4. Klasörü Netlify’a yeniden yükleyin.
+Yönetim: /admin.html — güçlü şifre kullanın, adresi müşterilere vermeyin.
 
 
---- B) Bulut ile (Supabase — önerilen) ---
-1. https://supabase.com → yeni proje oluşturun.
-2. Project Settings → API: Project URL ve anon public key’i not edin.
-   Netlify’da ortam değişkeni olarak girin (NETLIFY-SUPABASE.txt).
+--- A) Netlify (site + ortam değişkenleri) ---
+1. Siteyi Netlify’a bağlayın (Git veya manuel deploy).
+2. Site configuration → Build & deploy → Build settings:
+   • Build command: npm run build
+   • Publish directory: .
+3. Site configuration → Environment variables → iki değişken (Scopes: Builds + Deploys):
+   • SUPABASE_URL = Supabase Project Settings → API → Project URL
+   • SUPABASE_ANON_KEY = anon / publishable public anahtar (service_role değil)
+4. Değişkenlerden sonra yeniden deploy (gerekirse “Clear cache and deploy”).
+5. Build log’da “npm run build” ve config üretimi görünmeli.
 
-3. SQL Editor’da supabase-schema.sql dosyasının tamamını çalıştırın.
 
-4. Authentication → Providers → Email: açık olsun.
-   Authentication → Users → "Add user" ile yönetici oluşturun.
-   Önerilen e-posta ve şifre admin-giris-bilgileri.txt dosyasındadır.
+--- B) Supabase projesi ---
+1. https://supabase.com → yeni proje.
+2. SQL Editor’da supabase-schema.sql dosyasının tamamını çalıştırın.
+3. Authentication → Providers → Email: açık olsun.
+4. Authentication → Users → Add user ile yönetici oluşturun (e-posta onayı / Auto confirm ayarlarına dikkat).
 
-5. admin.html → aynı e-posta/şifre ile giriş.
-6. "Buluta kaydet" ile menüyü kaydedin. Ana sayfa birkaç saniye içinde güncellenir.
 
-İlk kayıttan önce menü boş görünürse: yönetim panelinde bir kez kaydedin veya menu_data satırındaki payload’ı Table Editor’dan yapıştırın.
+--- C) Panele giriş ---
+admin.html → oluşturduğunuz kullanıcı ile giriş → “Buluta kaydet” ile menüyü kaydedin.
+
+İlk kayıttan önce menü boşsa: panelden bir kez kaydedin veya menu_data.payload’ı Table Editor’dan doldurun.
+
+
+--- D) Supabase olmadan (yalnızca dosya) ---
+1. admin.html → “Supabase olmadan yerel JSON düzenle”.
+2. “menu.json indir” → projede data/menu.json ve js/menu-fallback.json içeriğini güncelleyin.
+3. Siteyi yeniden yayınlayın.
 
 
 --- Ürün görseli ---
-• Supabase ile: satırdaki "Dosya seç" ile yükleyin (menu-images bucket, herkese okunur).
-• Veya "Görsel URL" alanına doğrudan https:// adresi yazın (ör. Imgur, kendi sunucunuz).
-• Supabase olmadan: yalnızca URL yazılabilir; dosya yükleme çalışmaz.
+• Supabase ile: “Dosya seç” (menu-images bucket) veya tam https:// Görsel URL.
+• Supabase olmadan: yalnızca URL.
 
 
 --- Güvenlik ---
-• anon key tarayıcıda görünür; yazma işlemi RLS ile yalnızca giriş yapmış kullanıcıya açıktır.
-• service_role key’i asla js/config.js veya admin sayfasına koymayın.
+• anon key tarayıcıda görünür; yazma RLS ile giriş yapmış kullanıcıya açıktır.
+• service_role anahtarını asla siteye veya tarayıcıya koymayın.
