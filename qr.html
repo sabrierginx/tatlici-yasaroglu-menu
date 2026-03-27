@@ -35,12 +35,12 @@
 </head>
 <body>
   <h1>Menü QR kodu</h1>
-  <p>Bu sayfa açıldığı sitenin adresini kodlar. Yazdırırken veya kaydederken bu sayfayı <strong>canlı sitenizde</strong> (Netlify) açın.</p>
+  <p>Aşağıdaki QR, canlı menü adresinize gider. Görseli kaydedip basılı kullanabilirsiniz.</p>
   <code id="url-out"></code>
   <img id="qr" alt="Menü QR" width="280" height="280" />
   <script>
     (function () {
-      var base = window.location.origin + "/";
+      var base = "https://peppy-sawine-0aba25.netlify.app/";
       document.getElementById("url-out").textContent = base;
       var api =
         "https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=" +

@@ -8,8 +8,8 @@ Menü (index.html) veriyi şu sırayla okur:
 
 Yönetim: /admin.html — güçlü şifre kullanın, adresi müşterilere vermeyin.
 
-QR kod: canlı sitede /qr.html açarak güncel menü adresine kodlanmış görsel alın.
-index.html başındaki canonical / og:url de canlı alan adınızla uyumlu olsun.
+QR: qr.html ve QR klasöründeki PNG, menü kök adresine kodlanır (şu an
+https://peppy-sawine-0aba25.netlify.app/ ). Adres değişirse bu dosyaları güncelleyin.
 
 
 --- A) Netlify (site + ortam değişkenleri) ---
