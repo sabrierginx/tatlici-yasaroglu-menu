@@ -168,13 +168,24 @@
         }
       }
     }
-    var jsonHref =
+    var o = window.location.origin;
+    var jsonHrefs =
       window.location.protocol === "file:"
-        ? new URL("data/menu.json", window.location.href).href
-        : new URL("/data/menu.json", window.location.origin).href;
-    var r2 = await fetch(jsonHref);
-    if (!r2.ok) throw new Error("menu.json");
-    return r2.json();
+        ? [new URL("data/menu.json", window.location.href).href]
+        : [
+            new URL("/data/menu.json", o).href,
+            new URL("/js/menu-fallback.json", o).href
+          ];
+    var lastErr = null;
+    for (var j = 0; j < jsonHrefs.length; j++) {
+      try {
+        var r2 = await fetch(jsonHrefs[j], { cache: "no-store" });
+        if (r2.ok) return await r2.json();
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error("menu.json");
   }
 
   async function init() {

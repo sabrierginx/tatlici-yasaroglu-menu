@@ -4,6 +4,10 @@ TATLICI YAŞAROĞLU — Yönetim paneli kullanım kılavuzu
 Bu dosya, menüyü güncellemek için admin panelinin nasıl kullanılacağını anlatır.
 Teknik kurulum (Supabase, Netlify) için ADMIN-KURULUM.txt dosyasına bakın.
 
+Not: Repoda hem data/menu.json hem js/menu-fallback.json vardır; varsayılan menü
+yedek olarak ikinci dosyadan da okunur. data/menu.json’u elle güncellerseniz
+aynı içeriği js/menu-fallback.json’a da kopyalayın (veya tersi).
+
 
 1) Panele nasıl girilir?
 ------------------------

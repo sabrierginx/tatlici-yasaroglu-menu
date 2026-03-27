@@ -38,18 +38,20 @@
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 10;
-    }
-    .topbar h1 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 600;
+      z-index: 200;
     }
     .topbar-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
     button, .btn {
       font-family: inherit;
@@ -186,6 +188,9 @@
     </div>
   </header>
   <main>
+    <div id="boot-screen" class="card login-panel hidden">
+      <p class="status" style="text-align:center;margin:0">Oturum ve menü yükleniyor…</p>
+    </div>
     <div id="login-wrap" class="card login-panel">
       <h2>Giriş</h2>
       <p class="status" style="margin-top:0">Supabase kullanıyorsanız kayıtlı e-posta ve şifrenizi girin. Ayar yoksa aşağıdaki uyarıya bakın.</p>
@@ -239,7 +244,7 @@
         <div id="sections-mount"></div>
       </div>
 
-      <div class="topbar" style="position:fixed;bottom:0;top:auto;justify-content:center">
+      <div class="topbar" style="position:fixed;bottom:0;top:auto;justify-content:center;z-index:150">
         <div class="topbar-actions">
           <button type="button" id="btn-save-cloud" class="btn-ok hidden">Buluta kaydet (Supabase)</button>
           <button type="button" id="btn-download-json">menu.json indir</button>
@@ -250,6 +255,6 @@
 
   <script src="js/config.js"></script>
   <script src="js/config.generated.js"></script>
-  <script type="module" src="js/admin-app.js"></script>
+  <script src="js/admin-app.js" defer></script>
 </body>
 </html>
