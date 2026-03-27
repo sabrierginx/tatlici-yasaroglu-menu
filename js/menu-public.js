@@ -54,7 +54,11 @@
     var img = item.image
       ? '<img class="item-thumb" src="' +
         escapeAttr(item.image) +
-        '" alt="" width="52" height="52" loading="lazy" decoding="async" />'
+        '" alt="' +
+        escapeAttr(item.name || "Ürün") +
+        '" width="52" height="52" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Görseli büyüt: ' +
+        escapeAttr(item.name || "ürün") +
+        '" />'
       : "";
     var note = item.note
       ? '<span class="item-note">' + escapeHtml(item.note) + "</span>"
@@ -77,7 +81,11 @@
     var img = item.image
       ? '<img class="item-thumb" src="' +
         escapeAttr(item.image) +
-        '" alt="" width="52" height="52" loading="lazy" decoding="async" />'
+        '" alt="' +
+        escapeAttr(item.name || "Çeşit") +
+        '" width="52" height="52" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Görseli büyüt: ' +
+        escapeAttr(item.name || "çeşit") +
+        '" />'
       : "";
     return (
       '<li class="item item--flavor">' +
@@ -140,6 +148,76 @@
     mount.innerHTML = html;
   }
 
+  var lightboxEscBound = false;
+
+  function bindMenuImageLightbox(mount) {
+    var lb = document.getElementById("menu-image-lightbox");
+    if (!lb || !mount) return;
+    var fullImg = lb.querySelector(".menu-lightbox__img");
+    var btnClose = lb.querySelector(".menu-lightbox__close");
+    var backdrop = lb.querySelector(".menu-lightbox__backdrop");
+
+    function closeLightbox() {
+      lb.setAttribute("hidden", "");
+      if (fullImg) {
+        fullImg.removeAttribute("src");
+        fullImg.alt = "";
+      }
+      document.body.style.overflow = "";
+    }
+
+    function openLightbox(thumb) {
+      if (!fullImg || !thumb) return;
+      var src = thumb.getAttribute("src");
+      if (!src) return;
+      fullImg.src = src;
+      fullImg.alt = thumb.getAttribute("alt") || "";
+      lb.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      if (btnClose) btnClose.focus();
+    }
+
+    mount.addEventListener("click", function (ev) {
+      var t = ev.target;
+      if (t && t.classList && t.classList.contains("item-thumb")) {
+        ev.preventDefault();
+        openLightbox(t);
+      }
+    });
+
+    mount.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Enter" && ev.key !== " ") return;
+      var t = ev.target;
+      if (t && t.classList && t.classList.contains("item-thumb")) {
+        ev.preventDefault();
+        openLightbox(t);
+      }
+    });
+
+    if (btnClose) {
+      btnClose.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        closeLightbox();
+      });
+    }
+    if (backdrop) {
+      backdrop.addEventListener("click", closeLightbox);
+    }
+
+    lb.addEventListener("click", function (ev) {
+      if (ev.target === lb) closeLightbox();
+    });
+
+    if (!lightboxEscBound) {
+      lightboxEscBound = true;
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Escape") return;
+        if (lb.hasAttribute("hidden")) return;
+        closeLightbox();
+      });
+    }
+  }
+
   async function loadPayload() {
     var cfg = window.APP_CONFIG || {};
     var url = normalizeSupabaseUrl(cfg.supabaseUrl || "");
@@ -195,6 +273,7 @@
       var payload = await loadPayload();
       applyShop(payload.shop);
       renderSections(payload.sections, mount);
+      bindMenuImageLightbox(mount);
     } catch (e) {
       console.error(e);
       mount.innerHTML =
