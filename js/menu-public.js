@@ -168,7 +168,11 @@
         }
       }
     }
-    var r2 = await fetch("data/menu.json");
+    var jsonHref =
+      window.location.protocol === "file:"
+        ? new URL("data/menu.json", window.location.href).href
+        : new URL("/data/menu.json", window.location.origin).href;
+    var r2 = await fetch(jsonHref);
     if (!r2.ok) throw new Error("menu.json");
     return r2.json();
   }

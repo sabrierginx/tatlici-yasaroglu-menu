@@ -56,9 +56,34 @@ function defaultPayload() {
 }
 
 async function fetchLocalJson() {
-  const r = await fetch("data/menu.json");
-  if (!r.ok) throw new Error("menu.json okunamadı");
+  const href =
+    window.location.protocol === "file:"
+      ? new URL("data/menu.json", window.location.href).href
+      : new URL("/data/menu.json", window.location.origin).href;
+  const r = await fetch(href);
+  if (!r.ok) throw new Error("menu.json okunamadı (" + r.status + ")");
   return r.json();
+}
+
+function payloadHasMenuSections(p) {
+  return (
+    p &&
+    typeof p === "object" &&
+    Array.isArray(p.sections) &&
+    p.sections.length > 0
+  );
+}
+
+function normalizeRemotePayload(raw) {
+  if (raw == null) return null;
+  if (typeof raw === "string") {
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+  return typeof raw === "object" ? raw : null;
 }
 
 function showLogin() {
@@ -330,12 +355,14 @@ function renderSectionEditor(sec, index) {
 function renderAllSections() {
   const mount = $("sections-mount");
   mount.innerHTML = "";
+  if (!workingPayload) workingPayload = defaultPayload();
   (workingPayload.sections || []).forEach((sec, i) => {
     mount.appendChild(renderSectionEditor(sec, i));
   });
 }
 
 function fillShopForm() {
+  if (!workingPayload) workingPayload = defaultPayload();
   const s = workingPayload.shop || {};
   $("shop-badge").value = s.badge || "";
   $("shop-name").value = s.name || "";
@@ -345,26 +372,46 @@ function fillShopForm() {
 }
 
 async function loadPayloadIntoEditor() {
-  if (offlineMode || !hasCloud) {
-    workingPayload = await fetchLocalJson();
-  } else {
-    const { data, error } = await supabase
-      .from("menu_data")
-      .select("payload")
-      .eq("id", 1)
-      .maybeSingle();
-    if (error) throw error;
-    if (
-      data &&
-      data.payload &&
-      Array.isArray(data.payload.sections) &&
-      data.payload.sections.length > 0
-    ) {
-      workingPayload = data.payload;
-    } else {
-      workingPayload = await fetchLocalJson();
-    }
+  let localSeed;
+  try {
+    localSeed = await fetchLocalJson();
+  } catch (e) {
+    console.warn("menu.json:", e);
+    localSeed = defaultPayload();
   }
+
+  try {
+    if (offlineMode || !hasCloud) {
+      workingPayload = localSeed;
+    } else {
+      const { data, error } = await supabase
+        .from("menu_data")
+        .select("payload")
+        .eq("id", 1)
+        .maybeSingle();
+      if (error) throw error;
+      const remote = normalizeRemotePayload(data?.payload);
+      if (payloadHasMenuSections(remote)) {
+        workingPayload = remote;
+      } else {
+        workingPayload = {
+          shop: {
+            ...(localSeed.shop || {}),
+            ...(remote && typeof remote.shop === "object" ? remote.shop : {})
+          },
+          sections: localSeed.sections || []
+        };
+      }
+    }
+  } catch (e) {
+    console.error(e);
+    workingPayload = localSeed;
+    alert(
+      "Supabase’ten menü okunamadı; repodaki menü şablonu gösteriliyor.\n\n" +
+        (e && e.message ? e.message : String(e))
+    );
+  }
+
   fillShopForm();
   renderAllSections();
 }
@@ -500,6 +547,9 @@ if (supabase) {
         await loadPayloadIntoEditor();
       } catch (e) {
         console.error(e);
+        alert(
+          "Menü yüklenemedi: " + (e && e.message ? e.message : String(e))
+        );
       }
     }
   });
@@ -507,6 +557,11 @@ if (supabase) {
   if (session && !offlineMode) {
     $("auth-status").textContent = session.user.email || "Oturum açık";
     showEditor();
-    loadPayloadIntoEditor().catch(console.error);
+    loadPayloadIntoEditor().catch((e) => {
+      console.error(e);
+      alert(
+        "Menü yüklenemedi: " + (e && e.message ? e.message : String(e))
+      );
+    });
   }
 }
