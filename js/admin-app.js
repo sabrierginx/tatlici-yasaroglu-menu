@@ -622,11 +622,12 @@
     }
 
     var supabaseUrlNorm = normalizeSupabaseUrl(cfg.supabaseUrl || "");
+    /* Tarayıcıda oturum saklanmaz: her admin ziyaretinde e-posta/şifre gerekir.
+       (Eski sürümde localStorage kalan oturumu da temizlemek için signOut.) */
     supabase = createClient(supabaseUrlNorm, cfg.supabaseAnonKey.trim(), {
       auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        storage: window.localStorage
+        persistSession: false,
+        autoRefreshToken: false
       }
     });
 
@@ -644,6 +645,12 @@
         applySession(session);
       }
     });
+
+    try {
+      await supabase.auth.signOut({ scope: "local" });
+    } catch (e) {
+      console.warn(e);
+    }
 
     var sessRes = await supabase.auth.getSession();
     var session = sessRes.data && sessRes.data.session;
