@@ -137,23 +137,30 @@
       margin-bottom: 0.75rem;
     }
     .section-head > div { flex: 1; min-width: 140px; }
+    /* min-width: 0 — uzun ürün adı yazılınca grid taşmasın; fiyat sütunu ezilmesin */
     .item-row {
       display: grid;
-      grid-template-columns: 72px 1fr 100px 1fr auto;
+      grid-template-columns: 72px minmax(0, 1fr) minmax(7.5rem, 11rem) minmax(0, 1fr) auto;
       gap: 0.5rem;
       align-items: start;
       padding: 0.5rem 0;
       border-top: 1px solid var(--border);
     }
+    .item-row > * {
+      min-width: 0;
+    }
+    .item-row .thumb-cell {
+      min-width: 72px;
+    }
     .item-row.dondurma {
-      grid-template-columns: 72px 1fr auto;
+      grid-template-columns: 72px minmax(0, 1fr) auto;
     }
     @media (max-width: 900px) {
       .item-row {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       }
       .item-row .thumb-cell { grid-column: 1 / -1; }
-      .item-row.dondurma { grid-template-columns: 1fr auto; }
+      .item-row.dondurma { grid-template-columns: minmax(0, 1fr) auto; }
     }
     .thumb-preview {
       width: 64px;

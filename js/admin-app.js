@@ -153,7 +153,7 @@ function renderItemRowPriced(item, mount, onRemove) {
     '<input type="text" class="item-image-url" placeholder="https://..." />' +
     "</div>" +
     "<div><label>Ürün adı</label><input type=\"text\" class=\"item-name\" /></div>" +
-    "<div><label>Fiyat</label><input type=\"text\" class=\"item-price\" placeholder=\"₺100\" /></div>" +
+    "<div><label>Fiyat</label><input type=\"text\" class=\"item-price\" inputmode=\"decimal\" autocomplete=\"off\" placeholder=\"örn. ₺85 veya ₺1.200\" /></div>" +
     "<div><label>Not (isteğe bağlı)</label><input type=\"text\" class=\"item-note\" /></div>" +
     '<div><button type="button" class="btn-danger btn-remove-item">Sil</button></div>';
   row.querySelector(".item-name").value = item.name || "";
